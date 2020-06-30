@@ -300,22 +300,30 @@ bot.on('message', message =>{
         case "userdata":
             break;
         case "admin":
-            switch(args[1]){
-                case "weapon":
-                    switch(args[2]){
-                        case "create":
-                            if(!args[3]){
-                                message.channel.send("[weaponID] [weaponName] [weaponDescription] [taxMult] [maxGiveMult] [weaponAttrebutes]")
-                            } else {
-                                let weaponID = args[3] //finish this!!
-                            }
-                            break;
-                        case "edit":
-                            break;
-                        case "delete":
-                            break;
-                    }
-                    break;
+            if (userID == CoolAdminID){
+                switch(args[1]){
+                    case "weapon":
+                        switch(args[2]){
+                            case "create":
+                                if(!args[3]){
+                                    message.channel.send("[weaponID] [weaponName] [weaponDescription] [taxMult] [maxGiveMult] [weaponAttrebutes](seperate with '|') [weaponPrice]")
+                                } else {
+                                    let weaponID = args[3] //finish this!!
+                                    let weaponName = args[4]
+                                    let weaponDescription = args[5]
+                                    let taxMult = args[6]
+                                    let maxGiveMult = args[7]
+                                    let weaponAttrebutesUnspaced = args[8]
+                                    let weaponPrice = args[9]
+                                }
+                                break;
+                            case "edit":
+                                break;
+                            case "delete":
+                                break;
+                        }
+                        break;
+                }
             }
             break;
         case "help"://help
