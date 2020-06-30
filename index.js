@@ -37,6 +37,7 @@ bot.on('message', message =>{
     let args = msg.substring(prefix.length).split(" ");
     let userData = JSON.parse(fs.readFileSync('./userData.json', 'utf8'));
     let stockData = JSON.parse(fs.readFileSync('./stockData.json', 'utf8'));
+    let weaponData = JSON.parse(fs.readFileSync('./weaponData.json', 'utf8'));
     let userName = sender.username;
     let userID = (sender.id + message.guild.id);
     let convertionRate = 1.2;
@@ -297,6 +298,25 @@ bot.on('message', message =>{
             message.channel.send(dataEmbed)
             break;
         case "userdata":
+            break;
+        case "admin":
+            switch(args[1]){
+                case "weapon":
+                    switch(args[2]){
+                        case "create":
+                            if(!args[3]){
+                                message.channel.send("[weaponID] [weaponName] [weaponDescription] [taxMult] [maxGiveMult] [weaponAttrebutes]")
+                            } else {
+                                let weaponID = args[3] //finish this!!
+                            }
+                            break;
+                        case "edit":
+                            break;
+                        case "delete":
+                            break;
+                    }
+                    break;
+            }
             break;
         case "help"://help
             message.channel.send(helpEmbed)
