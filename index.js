@@ -306,15 +306,23 @@ bot.on('message', message =>{
                         switch(args[2]){
                             case "create":
                                 if(!args[3]){
-                                    message.channel.send("[weaponID] [weaponName] [weaponDescription] [taxMult] [maxGiveMult] [weaponAttrebutes](seperate with '|') [weaponPrice]")
+                                    message.channel.send("[weaponID] [weaponName] [weaponDescription] [taxMult] [maxGiveMult] [weaponAttributes](seperate with '|') [weaponPrice]")
                                 } else {
                                     let weaponID = args[3] //finish this!!
                                     let weaponName = args[4]
                                     let weaponDescription = args[5]
                                     let taxMult = args[6]
                                     let maxGiveMult = args[7]
-                                    let weaponAttrebutesUnspaced = args[8]
+                                    let weaponAttributesUnspaced = args[8]
                                     let weaponPrice = args[9]
+                                    
+                                    weaponData[weaponID] = {}
+                                    weaponData[weaponID].weaponName = weaponName
+                                    weaponData[weaponID].weaponDescription = weaponDescription
+                                    weaponData[weaponID].taxMult = taxMult
+                                    weaponData[weaponID].maxGiveTax = maxGiveTax
+                                    weaponData[weaponID].weaponAttributes = weaponAttributes.split("|")
+                                    weaponData[weaponID].weaponPrice = weaponPrice
                                 }
                                 break;
                             case "edit":
@@ -681,6 +689,9 @@ bot.on('message', message =>{
         if (err) console.error(err);
     });
     fs.writeFile('./userDataBackup.json', JSON.stringify(userData), (err) => {
+        if (err) console.error(err);
+    });
+    fs.writeFile('./weaponData.json', JSON.stringify(weaponData), (err) => {
         if (err) console.error(err);
     });
     
